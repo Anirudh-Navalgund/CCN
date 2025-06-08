@@ -1,0 +1,31 @@
+DEVICE 1:
+
+set interfaces ge-0/0/2 unit 0 family ethernet-switching vlan members DATA
+set interfaces ge-0/0/5 unit 0 family ethernet-switching vlan members VOICE
+set interfaces ge-0/0/23 unit 0 family inet address 20.20.20.2/30
+set interfaces vlan unit 10 family inet address 192.168.3.1/24
+set interfaces vlan unit 20 family inet address 192.168.4.1/24
+set routing-options static route 0.0.0.0/0 next-hop 20.20.20.1
+set vlans DATA vlan-id 10
+set vlans DATA l3-interface irb.10
+set vlans VOICE vlan-id 20
+set vlans VOICE l3-interface irb.20
+set interfaces irb.10 family inet address 192.168.3.1/24
+set interfaces irb.20 family inet address 192.168.4.1/24
+
+========================================================
+
+DEVICE 2:
+
+set interfaces ge-0/0/2 unit 0 family ethernet-switching vlan members study
+set interfaces ge-0/0/5 unit 0 family ethernet-switching vlan members teach
+set interfaces ge-0/0/23 unit 0 family inet address 20.20.20.1/30
+set interfaces vlan unit 1 family inet address 192.168.1.1/24
+set interfaces vlan unit 2 family inet address 192.168.2.1/24
+set routing-options static route 0.0.0.0/0 next-hop 20.20.20.2
+set vlans study vlan-id 1
+set vlans study l3-interface vlan.1
+set vlans teach vlan-id 2
+set vlans teach l3-interface vlan.2
+set interfaces irb.1 family inet address 192.168.1.1/24
+set interfaces irb.2 family inet address 192.168.2.1/24

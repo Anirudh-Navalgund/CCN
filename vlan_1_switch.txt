@@ -1,0 +1,32 @@
+SINGLE SWITCH - FIRST WAY:
+
+set interfaces ge-0/0/6 unit 0 family ethernet-switching vlan members explorer
+set interfaces ge-0/0/11 unit 0 family ethernet-switching vlan members achiever
+set interfaces me0 unit 0 family inet address 176.16.2.1/24
+set interfaces irb unit 55 family inet address 192.168.10.1/24
+set interfaces irb unit 66 family inet address 30.30.10.1/24
+set vlans achiever vlan-id 66
+set vlans achiever l3-interface irb.66
+set vlans explorer vlan-id 55
+set vlans explorer l3-interface irb.55
+set interfaces ge-0/0/7 unit 0 family ethernet-switching vlan members one
+set interfaces ge-0/0/13 unit 0 family ethernet-switching vlan members two
+set interfaces vlan unit 56 family inet address 192.168.11.1/24
+set interfaces vlan unit 67 family inet address 30.30.11.1/24
+set vlans two vlan-id 67
+set vlans two l3-interface irb.67
+set vlans one vlan-id 56
+set vlans one l3-interface irb.56
+
+=========================================================
+
+SINGLE SWITCH - SECOND WAY:
+
+set vlans DATA vlan-id 10
+set vlans VOICE vlan-id 20
+set interfaces ge-0/0/2 unit 0 family ethernet-switching vlan members DATA
+set interfaces ge-0/0/5 unit 0 family ethernet-switching vlan members VOICE
+set interfaces vlan unit 10 family inet address 192.168.3.1/24
+set interfaces vlan unit 20 family inet address 192.168.4.1/24
+set vlans DATA l3-interface irb.10
+set vlans VOICE l3-interface irb.20

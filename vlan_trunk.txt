@@ -1,0 +1,27 @@
+SWITCH 1:
+
+set interfaces ge-0/0/1 unit 0 family ethernet-switching interface-mode trunk
+set interfaces ge-0/0/1 unit 0 family ethernet-switching vlan members [explorer achiever]
+set interfaces ge-0/0/6 unit 0 family ethernet-switching interface-mode access
+set interfaces ge-0/0/6 unit 0 family ethernet-switching vlan members explorer
+set interfaces ge-0/0/11 unit 0 family ethernet-switching interface-mode access
+set interfaces ge-0/0/11 unit 0 family ethernet-switching vlan members achiever
+set interfaces irb unit 55 family inet address 192.120.20.1/24
+set interfaces irb unit 66 family inet address 30.40.20.1/24
+set vlans achiever vlan-id 66
+set vlans achiever l3-interface irb.66
+set vlans explorer vlan-id 55
+set vlans explorer l3-interface irb.55
+
+========================================================
+
+SWITCH 2:
+
+set interfaces ge-0/0/1 unit 0 family ethernet-switching interface-mode trunk
+set interfaces ge-0/0/1 unit 0 family ethernet-switching vlan members [explorer achiever]
+set interfaces ge-0/0/8 unit 0 family ethernet-switching interface-mode access
+set interfaces ge-0/0/8 unit 0 family ethernet-switching vlan members explorer
+set interfaces ge-0/0/9 unit 0 family ethernet-switching interface-mode access
+set interfaces ge-0/0/9 unit 0 family ethernet-switching vlan members achiever
+set vlans achiever vlan-id 66
+set vlans explorer vlan-id 55
